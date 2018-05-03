@@ -1,0 +1,24 @@
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\local.frameweb
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe.config
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.pdb
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.csprojResolveAssemblyReference.cache
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.csproj.CoreCompileInputs.cache
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.exe
+C:\Users\nilbervittorazzi\Downloads\FrameWeb-master\FrameWeb-master\6. Code Generator\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.pdb
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\local.frameweb
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe.config
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.pdb
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.csprojResolveAssemblyReference.cache
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.csproj.CoreCompileInputs.cache
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.exe
+C:\dev\FrameWebCodeGenerator\Codigo Fonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.pdb
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\bin\Debug\local.frameweb
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe.config
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\bin\Debug\GeradorFrameweb.pdb
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.csprojResolveAssemblyReference.cache
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.csproj.CoreCompileInputs.cache
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.exe
+C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.pdb

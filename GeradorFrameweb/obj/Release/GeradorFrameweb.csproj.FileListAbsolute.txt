@@ -1,0 +1,15 @@
+D:\GIT\Codegenerator\GeradorFrameweb\bin\Release\local.frameweb
+D:\GIT\Codegenerator\GeradorFrameweb\bin\Release\GeradorFrameweb.exe.config
+D:\GIT\Codegenerator\GeradorFrameweb\bin\Release\GeradorFrameweb.exe
+D:\GIT\Codegenerator\GeradorFrameweb\bin\Release\GeradorFrameweb.pdb
+D:\GIT\Codegenerator\GeradorFrameweb\obj\Release\GeradorFrameweb.csproj.CoreCompileInputs.cache
+D:\GIT\Codegenerator\GeradorFrameweb\obj\Release\GeradorFrameweb.exe
+D:\GIT\Codegenerator\GeradorFrameweb\obj\Release\GeradorFrameweb.pdb
+D:\GIT\codeGen2\GeradorFrameweb\bin\Release\local.frameweb
+D:\GIT\codeGen2\GeradorFrameweb\bin\Release\GeradorFrameweb.exe.config
+D:\GIT\codeGen2\GeradorFrameweb\bin\Release\GeradorFrameweb.exe
+D:\GIT\codeGen2\GeradorFrameweb\bin\Release\GeradorFrameweb.pdb
+D:\GIT\codeGen2\GeradorFrameweb\obj\Release\GeradorFrameweb.csprojResolveAssemblyReference.cache
+D:\GIT\codeGen2\GeradorFrameweb\obj\Release\GeradorFrameweb.csproj.CoreCompileInputs.cache
+D:\GIT\codeGen2\GeradorFrameweb\obj\Release\GeradorFrameweb.exe
+D:\GIT\codeGen2\GeradorFrameweb\obj\Release\GeradorFrameweb.pdb

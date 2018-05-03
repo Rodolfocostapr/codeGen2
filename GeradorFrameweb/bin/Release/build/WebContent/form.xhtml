@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<h:body>
+
+	<h:form id="requestLeaveForm">
+	
+<br />
+<h:selectOneMenu id="request_leaveType" value="#{requestLeaveForm.request.leaveType}">
+</h:selectOneMenu>
+
+<br />
+<h:selectOneMenu id="request_onus" value="#{requestLeaveForm.request.onus}">
+</h:selectOneMenu>
+
+<br />
+<h:inputText id="request_eventName" value="#{requestLeaveForm.request.eventName}" />
+
+<br />
+<h:inputText id="request_eventCity" value="#{requestLeaveForm.request.eventCity}" />
+
+<br />
+<h:inputText id="request_eventBeginDate" value="#{requestLeaveForm.request.eventBeginDate}" />
+
+<br />
+<h:inputText id="request_eventEndDate" value="#{requestLeaveForm.request.eventEndDate}" />
+
+</h:form>     
+
+</h:body>
+</html>
