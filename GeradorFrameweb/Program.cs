@@ -84,6 +84,9 @@ namespace GeradorFrameweb
             var dir_output_web = ConfigurationManager.AppSettings["dir_output_web"];
             var dir_output_class = ConfigurationManager.AppSettings["dir_output_class"];
             var ext_class = ConfigurationManager.AppSettings["ext_class"];
+            var ext_auth_config = ConfigurationManager.AppSettings["ext_auth_config"];
+            var dir_in_auth_config = ConfigurationManager.AppSettings["dir_in_auth_config"];
+            var auth_config_name = ConfigurationManager.AppSettings["auth_config_name"];
             var dir_output = "build\\";
 
             try
@@ -203,6 +206,37 @@ namespace GeradorFrameweb
 
                 File.WriteAllText(Path.Combine(dir_output, dir_output_web, page.name), text);
             }
+
+            /// AUTH CONFIG
+            /// controllers = componente.Componentes.Where(x => x.xsi_type == "frameweb:ControllerPackage").ToList().SelectMany(x => x.Componentes).ToList();
+            /// views = componente.Componentes.Where(x => x.xsi_type == "frameweb:ViewPackage").ToList().SelectMany(x => x.Componentes).ToList();
+            var tags_authConfig = new Dictionary<string, string>();
+            foreach (var controller in controllers)
+            {
+                //assuming only one login proc method can be informed
+                var auth_proc_method = controller.Componentes.Where(x => x.xsi_type == "frameweb:AuthProcessingMethod").FirstOrDefault();
+
+                //USAR TAGLIB AQUI?
+                tags_authConfig.Add("FW_AUTH_LOGIN_PROC_URL", auth_proc_method != null ? string.Concat(controller.name, "/", auth_proc_method.name) : string.Empty);
+            }
+
+            var authSuccessUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthSuccessUrl").FirstOrDefault().getSupplier();
+            var authFailureUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthFailureUrl").FirstOrDefault().getSupplier();
+
+            tags_authConfig.Add("FW_AUTH_LOGIN_SUCC_URL", authSuccessUrl);
+            tags_authConfig.Add("FW_AUTH_LOGIN_FAIL_URL", authFailureUrl);
+
+            var textConfig = File.ReadAllText(dir_template + dir_in_auth_config);
+            foreach (var item in tags_authConfig)
+            {
+                textConfig = textConfig.Replace(item.Key, item.Value);
+            }
+
+            Directory.CreateDirectory(Path.Combine(dir_output, dir_output_web));
+
+            File.WriteAllText(Path.Combine(dir_output, dir_output_web, auth_config_name + ext_auth_config), textConfig);
+
+
             Process.Start("explorer.exe", dir_output);
         }
 

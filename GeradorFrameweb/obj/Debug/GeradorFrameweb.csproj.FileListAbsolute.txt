@@ -22,3 +22,11 @@ C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFramew
 C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.csproj.CoreCompileInputs.cache
 C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.exe
 C:\dev\FrameWebCodeGenerator\CodigoFonte\GeradorFrameweb\obj\Debug\GeradorFrameweb.pdb
+D:\GIT\codeGen2\GeradorFrameweb\bin\Debug\local.frameweb
+D:\GIT\codeGen2\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe.config
+D:\GIT\codeGen2\GeradorFrameweb\bin\Debug\GeradorFrameweb.exe
+D:\GIT\codeGen2\GeradorFrameweb\bin\Debug\GeradorFrameweb.pdb
+D:\GIT\codeGen2\GeradorFrameweb\obj\Debug\GeradorFrameweb.csprojResolveAssemblyReference.cache
+D:\GIT\codeGen2\GeradorFrameweb\obj\Debug\GeradorFrameweb.csproj.CoreCompileInputs.cache
+D:\GIT\codeGen2\GeradorFrameweb\obj\Debug\GeradorFrameweb.exe
+D:\GIT\codeGen2\GeradorFrameweb\obj\Debug\GeradorFrameweb.pdb

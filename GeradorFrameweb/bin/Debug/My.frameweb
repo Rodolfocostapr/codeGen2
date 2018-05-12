@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frameweb:FramewebProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:frameweb="http://nemo.inf.ufes.br/projects/frameweb/FW-2015">
+  <compose xsi:type="frameweb:EntityModel" name="Entity Model">
+    <packagedElement xsi:type="frameweb:DomainPackage" name="Entity Package">
+      <packagedElement xsi:type="frameweb:AuthUser" name="New Auth User Class">
+        <ownedAttribute xsi:type="frameweb:AuthUserName" name="username" visibility="private" type="//@compose.0/Entity%20Package.1/String"/>
+        <ownedAttribute xsi:type="frameweb:AuthPassword" name="password" visibility="private" type="//@compose.0/Entity%20Package.1/String"/>
+      </packagedElement>
+      <packagedElement xsi:type="frameweb:AuthRole" name="New Class">
+        <ownedAttribute xsi:type="frameweb:AuthRoleName" name="roleName" visibility="private" type="//@compose.0/Entity%20Package.1/String"/>
+      </packagedElement>
+      <packagedElement xsi:type="frameweb:AuthPermission" name="New Class">
+        <ownedAttribute xsi:type="frameweb:AuthPermName" name="permissionName" visibility="private" type="//@compose.0/Entity%20Package.1/String"/>
+      </packagedElement>
+      <packagedElement xsi:type="frameweb:DomainClass" name="New Class">
+        <ownedAttribute xsi:type="frameweb:IdAttribute" name="New Id Attribute"/>
+      </packagedElement>
+      <packagedElement xsi:type="frameweb:DomainClass" name="New Class"/>
+      <packagedElement xsi:type="frameweb:AuthUser" name="New Auth User Class">
+        <ownedAttribute xsi:type="frameweb:AuthUserName" name="username" visibility="private"/>
+        <ownedAttribute xsi:type="frameweb:AuthPassword" name="password" visibility="private"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xsi:type="frameweb:DomainPackage" name="Entity Package">
+      <packagedElement xsi:type="frameweb:DomainClass" name="String"/>
+    </packagedElement>
+  </compose>
+  <compose xsi:type="frameweb:NavigationModel" name="Navigation Model">
+    <packagedElement xsi:type="frameweb:ControllerPackage" name="Controller Package">
+      <packagedElement xsi:type="frameweb:FrontControllerClass" name="Login Controller">
+        <ownedOperation xsi:type="frameweb:AuthProcessingMethod" name="login"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xsi:type="frameweb:ViewPackage" name="View Package">
+      <packagedElement xsi:type="frameweb:AuthForm" name="login form"/>
+      <packagedElement xsi:type="frameweb:AuthPage" name="login page">
+        <ownedAttribute xsi:type="frameweb:NavigationCompositionWhole" type="//@compose.1/View%20Package/login%20form" association="//@compose.1/View%20Package/@packagedElement.2"/>
+      </packagedElement>
+      <packagedElement xsi:type="frameweb:NavigationAssociation" memberEnd="//@compose.1/View%20Package/@packagedElement.2/@ownedEnd.0 //@compose.1/View%20Package/login%20page/@ownedAttribute.0">
+        <ownedEnd xsi:type="frameweb:NavigationCompositionPart" type="//@compose.1/View%20Package/login%20page" association="//@compose.1/View%20Package/@packagedElement.2"/>
+      </packagedElement>
+      <packagedElement xsi:type="frameweb:Page" name="index"/>
+    </packagedElement>
+    <packagedElement xsi:type="frameweb:FrontControllerDependency" client="//@compose.1/View%20Package/login%20form" supplier="//@compose.1/Controller%20Package/Login%20Controller" method="//@compose.1/Controller%20Package/Login%20Controller/login"/>
+    <packagedElement xsi:type="frameweb:AuthFailureUrl" client="//@compose.1/Controller%20Package/Login%20Controller" supplier="//@compose.1/View%20Package/login%20page">
+      <resultDependencyConstraint result="null"/>
+    </packagedElement>
+    <packagedElement xsi:type="frameweb:AuthSuccessUrl" client="//@compose.1/Controller%20Package/Login%20Controller" supplier="//@compose.1/View%20Package/index">
+      <resultDependencyConstraint result="null"/>
+    </packagedElement>
+  </compose>
+  <compose xsi:type="frameweb:ApplicationModel" name="Application Model">
+    <packagedElement xsi:type="frameweb:ApplicationPackage" name="Application Package">
+      <packagedElement xsi:type="frameweb:AuthServiceClass" name="Movie" permissionName="PERM_MOVIE"/>
+      <packagedElement xsi:type="frameweb:ServiceInterface" name="New ServiceInterface"/>
+    </packagedElement>
+  </compose>
+</frameweb:FramewebProject>
