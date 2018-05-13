@@ -37,46 +37,20 @@ namespace GeradorFrameweb
             string[] nivel_3 = new string[] { "type" };
 
             XmlElement ele = (XmlElement)xmlDocument.DocumentElement.SelectNodes("compose")[0];
+            /// GETTING ENTITY MODEL COMPONENT - Rodolfo Costa 
+            XmlElement ele_entity = (XmlElement)xmlDocument.DocumentElement.SelectNodes("compose")[1];
+
             Componete componente = CriarComponente(ele);
+            componente = criarCompose(componente, ele, nivel_1, nivel_2, nivel_3);
 
-            foreach (XmlElement sub0 in ele.SelectNodes("packagedElement"))
-            {
-                var comp0 = CriarComponente(sub0);
+            /// GETTING ENTITY MODEL COMPONENT - Rodolfo Costa 
+            Componete componente_entity = CriarComponente(ele_entity);
+            componente_entity = criarCompose(componente_entity, ele_entity, nivel_1, nivel_2, nivel_3);
 
-                foreach (var niv in nivel_1)
-                {
-                    foreach (XmlElement sub1 in sub0.SelectNodes(niv))
-                    {
-                        var comp1 = CriarComponente(sub1);
-                        comp0.Componentes.Add(comp1);
-
-                        foreach (var niv2 in nivel_2)
-                        {
-                            foreach (XmlElement sub2 in sub1.SelectNodes(niv2))
-                            {
-                                var comp2 = CriarComponente(sub2);
-                                comp1.Componentes.Add(comp2);
-
-                                foreach (var niv3 in nivel_3)
-                                {
-                                    foreach (XmlElement sub3 in sub2.SelectNodes(niv3))
-                                    {
-                                        var comp3 = CriarComponente(sub3);
-                                        comp2.Componentes.Add(comp3);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                componente.Componentes.Add(comp0);
-            }
-
-            GerarArquivos(componente);
+            GerarArquivos(componente, componente_entity);
         }
 
-        private static void GerarArquivos(Componete componente)
+        private static void GerarArquivos(Componete componente, Componete componente_entity)
         {
             var dir_template = ConfigurationManager.AppSettings["dir_template"];
             var projeto = dir_template + "projeto\\" + ConfigurationManager.AppSettings["projeto"];
@@ -207,9 +181,8 @@ namespace GeradorFrameweb
                 File.WriteAllText(Path.Combine(dir_output, dir_output_web, page.name), text);
             }
 
-            /// AUTH CONFIG
-            /// controllers = componente.Componentes.Where(x => x.xsi_type == "frameweb:ControllerPackage").ToList().SelectMany(x => x.Componentes).ToList();
-            /// views = componente.Componentes.Where(x => x.xsi_type == "frameweb:ViewPackage").ToList().SelectMany(x => x.Componentes).ToList();
+            /// AUTH CONFIG - Rodolfo Costa do Prado
+
             var tags_authConfig = new Dictionary<string, string>();
             foreach (var controller in controllers)
             {
@@ -219,12 +192,24 @@ namespace GeradorFrameweb
                 //USAR TAGLIB AQUI?
                 tags_authConfig.Add("FW_AUTH_LOGIN_PROC_URL", auth_proc_method != null ? string.Concat(controller.name, "/", auth_proc_method.name) : string.Empty);
             }
-
+            //GETTING THE SUCCESS AND FAILURE URL
             var authSuccessUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthSuccessUrl").FirstOrDefault().getSupplier();
             var authFailureUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthFailureUrl").FirstOrDefault().getSupplier();
 
             tags_authConfig.Add("FW_AUTH_LOGIN_SUCC_URL", authSuccessUrl);
             tags_authConfig.Add("FW_AUTH_LOGIN_FAIL_URL", authFailureUrl);
+
+            //GETTING THE AUTH DOMAIN CLASSES
+            var domain_classes = componente_entity.Componentes.Where(x => x.xsi_type == "frameweb:DomainPackage").FirstOrDefault();
+
+            //assuming only one of each auth domain classes can be made
+            var auth_user_class = domain_classes.Componentes.Where(x => x.xsi_type == "frameweb:AuthUser").FirstOrDefault();
+            var auth_role_class = domain_classes.Componentes.Where(x => x.xsi_type == "frameweb:AuthRole").FirstOrDefault();
+            var auth_perm_class = domain_classes.Componentes.Where(x => x.xsi_type == "frameweb:AuthPermission").FirstOrDefault();
+
+            tags_authConfig.Add("FW_AUTH_USER", auth_user_class.name);
+            tags_authConfig.Add("FW_AUTH_ROLE", auth_role_class.name);
+            tags_authConfig.Add("FW_AUTH_PERM", auth_perm_class.name);
 
             var textConfig = File.ReadAllText(dir_template + dir_in_auth_config);
             foreach (var item in tags_authConfig)
@@ -251,6 +236,47 @@ namespace GeradorFrameweb
         {
             Console.WriteLine(DateTime.Now + " - " + log);
         }
+
+        static Componete criarCompose(Componete comp, XmlElement element, string[] nivel_1, string[] nivel_2, string[] nivel_3)
+        {
+
+            foreach (XmlElement sub0 in element.SelectNodes("packagedElement"))
+            {
+                var comp0 = CriarComponente(sub0);
+
+                foreach (var niv in nivel_1)
+                {
+                    foreach (XmlElement sub1 in sub0.SelectNodes(niv))
+                    {
+                        var comp1 = CriarComponente(sub1);
+                        comp0.Componentes.Add(comp1);
+
+                        foreach (var niv2 in nivel_2)
+                        {
+                            foreach (XmlElement sub2 in sub1.SelectNodes(niv2))
+                            {
+                                var comp2 = CriarComponente(sub2);
+                                comp1.Componentes.Add(comp2);
+
+                                foreach (var niv3 in nivel_3)
+                                {
+                                    foreach (XmlElement sub3 in sub2.SelectNodes(niv3))
+                                    {
+                                        var comp3 = CriarComponente(sub3);
+                                        comp2.Componentes.Add(comp3);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                comp.Componentes.Add(comp0);
+            }
+
+            return comp;
+        }
+
         static Componete CriarComponente(XmlElement elemento)
         {
             var comp = new Componete();

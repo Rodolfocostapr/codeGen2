@@ -11,8 +11,8 @@
         <form-login 
 		   login-page="/FW_AUTH_LOGIN_METHOD"
 		   login-processing-url="/FW_AUTH_LOGIN_PROC_URL"
-		   username-parameter="FW_AUTH_USERNAME"
-		   password-parameter="FW_AUTH_PASSWORD"
+		   username-parameter="j_username"
+		   password-parameter="j_password"
 		   default-target-url="/FW_AUTH_LOGIN_SUCC_URL"
        authentication-failure-url="/FW_AUTH_LOGIN_FAIL_URL"/>
 		   <logout 

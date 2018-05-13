@@ -7,28 +7,28 @@
           http://www.springframework.org/schema/security/spring-security-4.2.xsd">
   	<global-method-security pre-post-annotations="enabled"/>
     <http auto-config='true' use-expressions = "true">
-    	<intercept-url pattern="/New Front Controller/login" access="permitAll" />
+    	<intercept-url pattern="/FW_AUTH_LOGIN_METHOD" access="permitAll" />
         <form-login 
-		   login-page="/New Front Controller/login"
-		   login-processing-url="/FW_AUTH_LOGIN_PROC_URL"
-		   username-parameter="FW_AUTH_USERNAME"
-		   password-parameter="FW_AUTH_PASSWORD"
-		   default-target-url="/New%20Page.1"
-       authentication-failure-url="/New%20Page"/>
+		   login-page="/FW_AUTH_LOGIN_METHOD"
+		   login-processing-url="/New Front Controller/login"
+		   username-parameter="j_username"
+		   password-parameter="j_password"
+		   default-target-url="/New%20Page"
+       authentication-failure-url="/New%20Auth%20Page"/>
 		   <logout 
 		   logout-url="/logout" 
-		   logout-success-url="/New Front Controller/login"/>
+		   logout-success-url="/FW_AUTH_LOGIN_METHOD"/>
     </http>
 
 	<authentication-manager>
 		<authentication-provider>
     		 <jdbc-user-service 
       			data-source-ref="dataSource"
-      			users-by-username-query="select FW_AUTH_USER.FW_AUTH_USER_USERNAME, FW_AUTH_USER.FW_AUTH_USER_PASSWORD, 1 from FW_AUTH_USER where FW_AUTH_USER.FW_AUTH_USER_USERNAME=?"
-      			authorities-by-username-query="SELECT DISTINCT FW_AUTH_USER.FW_AUTH_USER_USERNAME, FW_AUTH_ROLE_FW_AUTH_PERM.FW_AUTH_PERMs_FW_AUTH_PERM_NAME
-												FROM FW_AUTH_USER, FW_AUTH_USER_FW_AUTH_ROLE, FW_AUTH_ROLE_FW_AUTH_PERM 
-												where FW_AUTH_USER.FW_ID = FW_AUTH_USER_FW_AUTH_ROLE.FW_ID_FW_AUTH_USER and
-												FW_AUTH_ROLE_FW_AUTH_PERM.FW_AUTH_ROLE_FW_AUTH_ROLE_ROLENAME = FW_AUTH_USER_FW_AUTH_ROLE_ROLENAME.FW_AUTH_ROLE_ROLENAMEs_FW_AUTH_ROLE_ROLENAME and FW_AUTH_USER.FW_AUTH_USER_USERNAME = ?" />
+      			users-by-username-query="select New Auth User Class.New Auth User Class_USERNAME, New Auth User Class.New Auth User Class_PASSWORD, 1 from New Auth User Class where New Auth User Class.New Auth User Class_USERNAME=?"
+      			authorities-by-username-query="SELECT DISTINCT New Auth User Class.New Auth User Class_USERNAME, New Class_New Class.New Classs_New Class_NAME
+												FROM New Auth User Class, New Auth User Class_New Class, New Class_New Class 
+												where New Auth User Class.FW_ID = New Auth User Class_New Class.FW_ID_New Auth User Class and
+												New Class_New Class.New Class_New Class_ROLENAME = New Auth User Class_New Class_ROLENAME.New Class_ROLENAMEs_New Class_ROLENAME and New Auth User Class.New Auth User Class_USERNAME = ?" />
       		<!-- 	
       		<user-service>
 				<user name="123" password="1234" authorities="ROLE_USER" />
