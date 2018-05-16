@@ -142,8 +142,8 @@ namespace GeradorFrameweb
             /// VIEW
 
             var views = componente.Componentes.Where(x => x.xsi_type == "frameweb:ViewPackage").ToList().SelectMany(x => x.Componentes).ToList();
-
-            var views_pages = views.Where(x => x.xsi_type == "frameweb:Page").ToList();
+            /// seleciona as Page e authPages - Rodolfo Costa do Prado
+            var views_pages = views.Where(x => x.xsi_type == "frameweb:Page" || x.xsi_type == "frameweb:AuthPage").ToList();
             foreach (var page in views_pages)
             {
                 string body = string.Empty;
@@ -184,6 +184,11 @@ namespace GeradorFrameweb
             /// AUTH CONFIG - Rodolfo Costa do Prado
 
             var tags_authConfig = new Dictionary<string, string>();
+
+            var login_page = views.Where(x => x.xsi_type == "frameweb:AuthPage").FirstOrDefault();
+
+            tags_authConfig.Add("FW_AUTH_LOGIN_PAGE", login_page.name);
+
             foreach (var controller in controllers)
             {
                 //assuming only one login proc method can be informed
@@ -193,8 +198,8 @@ namespace GeradorFrameweb
                 tags_authConfig.Add("FW_AUTH_LOGIN_PROC_URL", auth_proc_method != null ? string.Concat(controller.name, "/", auth_proc_method.name) : string.Empty);
             }
             //GETTING THE SUCCESS AND FAILURE URL
-            var authSuccessUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthSuccessUrl").FirstOrDefault().getSupplier();
-            var authFailureUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthFailureUrl").FirstOrDefault().getSupplier();
+            var authSuccessUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthSuccessUrl").FirstOrDefault().supplier;
+            var authFailureUrl = componente.Componentes.Where(x => x.xsi_type == "frameweb:AuthFailureUrl").FirstOrDefault().supplier;
 
             tags_authConfig.Add("FW_AUTH_LOGIN_SUCC_URL", authSuccessUrl);
             tags_authConfig.Add("FW_AUTH_LOGIN_FAIL_URL", authFailureUrl);
@@ -207,9 +212,21 @@ namespace GeradorFrameweb
             var auth_role_class = domain_classes.Componentes.Where(x => x.xsi_type == "frameweb:AuthRole").FirstOrDefault();
             var auth_perm_class = domain_classes.Componentes.Where(x => x.xsi_type == "frameweb:AuthPermission").FirstOrDefault();
 
-            tags_authConfig.Add("FW_AUTH_USER", auth_user_class.name);
-            tags_authConfig.Add("FW_AUTH_ROLE", auth_role_class.name);
-            tags_authConfig.Add("FW_AUTH_PERM", auth_perm_class.name);
+            if (auth_user_class != null && auth_role_class != null && auth_perm_class != null)
+            {
+                tags_authConfig.Add("FW_AUTH_USER", auth_user_class.name.Replace(" ", "_"));
+                tags_authConfig.Add("FW_AUTH_ROLE", auth_role_class.name.Replace(" ", "_"));
+                tags_authConfig.Add("FW_AUTH_PERM", auth_perm_class.name.Replace(" ", "_"));
+                //REPLACING USER COLUM NAMES
+                tags_authConfig.Add("FW_USER_ID", auth_user_class.Componentes.Where(x => x.xsi_type == "frameweb:IdAttribute").FirstOrDefault().name);
+                tags_authConfig.Add("FW_AUTHAT_USER_USERNAME", auth_user_class.Componentes.Where(x => x.xsi_type == "frameweb:AuthUserName").FirstOrDefault().name);
+                tags_authConfig.Add("FW_AUTHAT_USER_PASSWORD", auth_user_class.Componentes.Where(x => x.xsi_type == "frameweb:AuthPassword").FirstOrDefault().name);
+                //REPLACING ROLE COLUM NAMES
+                tags_authConfig.Add("FW_AUTHAT_ROLE_ROLENAME", auth_role_class.Componentes.Where(x => x.xsi_type == "frameweb:AuthRoleName").FirstOrDefault().name);
+                //REPLACING PERM COLUM NAMES
+                tags_authConfig.Add("FW_AUTHAT_PERM_NAME", auth_perm_class.Componentes.Where(x => x.xsi_type == "frameweb:AuthPermName").FirstOrDefault().name);
+            }
+
 
             var textConfig = File.ReadAllText(dir_template + dir_in_auth_config);
             foreach (var item in tags_authConfig)

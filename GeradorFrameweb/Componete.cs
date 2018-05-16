@@ -34,7 +34,13 @@ namespace GeradorFrameweb
                 case "frameweb:Page":
                     var tag_lib = this.Componentes.Where(x => x.tag == "pageTagLib").FirstOrDefault();
                     var parametros = tag_lib.href.Split('/');
-                    return parametros[parametros.Length - 1] + ".txt";       
+                    return parametros[parametros.Length - 1] + ".txt";
+
+                case "frameweb:AuthPage":
+                    tag_lib = this.Componentes.Where(x => x.tag == "pageTagLib").FirstOrDefault();
+                    parametros = tag_lib.href.Split('/');
+                    return parametros[parametros.Length - 1] + ".txt";
+
                 default:
                     return this.xsi_type.Split(':')[1] + ".txt";
             }

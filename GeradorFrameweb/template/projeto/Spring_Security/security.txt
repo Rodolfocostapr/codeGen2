@@ -7,9 +7,9 @@
           http://www.springframework.org/schema/security/spring-security-4.2.xsd">
   	<global-method-security pre-post-annotations="enabled"/>
     <http auto-config='true' use-expressions = "true">
-    	<intercept-url pattern="/FW_AUTH_LOGIN_METHOD" access="permitAll" />
+    	<intercept-url pattern="/FW_AUTH_LOGIN_PAGE" access="permitAll" />
         <form-login 
-		   login-page="/FW_AUTH_LOGIN_METHOD"
+		   login-page="/FW_AUTH_LOGIN_PAGE"
 		   login-processing-url="/FW_AUTH_LOGIN_PROC_URL"
 		   username-parameter="j_username"
 		   password-parameter="j_password"
@@ -17,18 +17,18 @@
        authentication-failure-url="/FW_AUTH_LOGIN_FAIL_URL"/>
 		   <logout 
 		   logout-url="/logout" 
-		   logout-success-url="/FW_AUTH_LOGIN_METHOD"/>
+		   logout-success-url="/FW_AUTH_LOGIN_PAGE"/>
     </http>
 
 	<authentication-manager>
 		<authentication-provider>
     		 <jdbc-user-service 
       			data-source-ref="dataSource"
-      			users-by-username-query="select FW_AUTH_USER.FW_AUTH_USER_USERNAME, FW_AUTH_USER.FW_AUTH_USER_PASSWORD, 1 from FW_AUTH_USER where FW_AUTH_USER.FW_AUTH_USER_USERNAME=?"
-      			authorities-by-username-query="SELECT DISTINCT FW_AUTH_USER.FW_AUTH_USER_USERNAME, FW_AUTH_ROLE_FW_AUTH_PERM.FW_AUTH_PERMs_FW_AUTH_PERM_NAME
+      			users-by-username-query="select FW_AUTH_USER.FW_AUTHAT_USER_USERNAME, FW_AUTH_USER.FW_AUTHAT_USER_PASSWORD, 1 from FW_AUTH_USER where FW_AUTH_USER.FW_AUTHAT_USER_USERNAME=?"
+      			authorities-by-username-query="SELECT DISTINCT FW_AUTH_USER.FW_AUTHAT_USER_USERNAME, FW_AUTH_ROLE_FW_AUTH_PERM.FW_AUTH_PERMs_FW_AUTHAT_PERM_NAME
 												FROM FW_AUTH_USER, FW_AUTH_USER_FW_AUTH_ROLE, FW_AUTH_ROLE_FW_AUTH_PERM 
-												where FW_AUTH_USER.FW_ID = FW_AUTH_USER_FW_AUTH_ROLE.FW_ID_FW_AUTH_USER and
-												FW_AUTH_ROLE_FW_AUTH_PERM.FW_AUTH_ROLE_FW_AUTH_ROLE_ROLENAME = FW_AUTH_USER_FW_AUTH_ROLE_ROLENAME.FW_AUTH_ROLE_ROLENAMEs_FW_AUTH_ROLE_ROLENAME and FW_AUTH_USER.FW_AUTH_USER_USERNAME = ?" />
+												where FW_AUTH_USER.FW_USER_ID = FW_AUTH_USER_FW_AUTH_ROLE.FW_AUTH_USER_FW_USER_ID and
+												FW_AUTH_ROLE_FW_AUTH_PERM.FW_AUTH_ROLE_FW_AUTHAT_ROLE_ROLENAME = FW_AUTH_USER_FW_AUTH_ROLE.FW_AUTH_ROLEs_FW_AUTHAT_ROLE_ROLENAME and FW_AUTH_USER.FW_AUTHAT_USER_USERNAME = ?" />
       		<!-- 	
       		<user-service>
 				<user name="123" password="1234" authorities="ROLE_USER" />

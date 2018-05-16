@@ -7,39 +7,43 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="frameweb:ViewPackage" name="View Package">
-      <packagedElement xsi:type="frameweb:AuthForm" name="New Auth Form"/>
+      <packagedElement xsi:type="frameweb:AuthForm" name="login form"/>
       <packagedElement xsi:type="frameweb:NavigationAssociation" memberEnd="//@compose.0/View%20Package/@packagedElement.1/@ownedEnd.0">
         <ownedEnd xsi:type="frameweb:NavigationCompositionPart" association="//@compose.0/View%20Package/@packagedElement.1"/>
       </packagedElement>
-      <packagedElement xsi:type="frameweb:Page" name="New Page">
-        <pageTagLib href="MVC_JSF.frameweb#//@Uses.0/JSFcore"/>
-      </packagedElement> 
-      <packagedElement xsi:type="frameweb:AuthPage" name="New Auth Page">
-        <ownedAttribute xsi:type="frameweb:NavigationCompositionWhole" type="//@compose.0/View%20Package/New%20Auth%20Form" association="//@compose.0/View%20Package/@packagedElement.4"/>
+      <packagedElement xsi:type="frameweb:Page" name="index">
         <pageTagLib href="MVC_JSF.frameweb#//@Uses.0/JSFcore"/>
       </packagedElement>
-      <packagedElement xsi:type="frameweb:NavigationAssociation" memberEnd="//@compose.0/View%20Package/@packagedElement.4/@ownedEnd.0 //@compose.0/View%20Package/New%20Auth%20Page/@ownedAttribute.0">
-        <ownedEnd xsi:type="frameweb:NavigationCompositionPart" type="//@compose.0/View%20Package/New%20Auth%20Page" association="//@compose.0/View%20Package/@packagedElement.4"/>
+      <packagedElement xsi:type="frameweb:AuthPage" name="login_page">
+        <ownedAttribute xsi:type="frameweb:NavigationCompositionWhole" type="//@compose.0/View%20Package/login%20form" association="//@compose.0/View%20Package/@packagedElement.4"/>
+        <pageTagLib href="MVC_JSF.frameweb#//@Uses.0/JSFcore"/>
+      </packagedElement>
+      <packagedElement xsi:type="frameweb:NavigationAssociation" memberEnd="//@compose.0/View%20Package/@packagedElement.4/@ownedEnd.0 //@compose.0/View%20Package/login%20page/@ownedAttribute.0">
+        <ownedEnd xsi:type="frameweb:NavigationCompositionPart" type="//@compose.0/View%20Package/login%20page" association="//@compose.0/View%20Package/@packagedElement.4"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xsi:type="frameweb:FrontControllerDependency" client="//@compose.0/View%20Package/New%20Auth%20Form" supplier="//@compose.0/Controller%20Package/New%20Front%20Controller" method="//@compose.0/Controller%20Package/New%20Front%20Controller/login"/>
-    <packagedElement xsi:type="frameweb:AuthSuccessUrl" client="//@compose.0/Controller%20Package/New%20Front%20Controller" supplier="//@compose.0/View%20Package/New%20Page">
+    <packagedElement xsi:type="frameweb:FrontControllerDependency" client="//@compose.0/View%20Package/login%20form" supplier="//@compose.0/Controller%20Package/New%20Front%20Controller" method="//@compose.0/Controller%20Package/New%20Front%20Controller/login"/>
+    <packagedElement xsi:type="frameweb:AuthSuccessUrl" client="//@compose.0/Controller%20Package/New%20Front%20Controller" supplier="//@compose.0/View%20Package/index">
       <resultDependencyConstraint result="null"/>
     </packagedElement>
-    <packagedElement xsi:type="frameweb:AuthFailureUrl" client="//@compose.0/Controller%20Package/New%20Front%20Controller" supplier="//@compose.0/View%20Package/New%20Auth%20Page">
+    <packagedElement xsi:type="frameweb:AuthFailureUrl" client="//@compose.0/Controller%20Package/New%20Front%20Controller">
+      <resultDependencyConstraint result="null"/>
+    </packagedElement>
+    <packagedElement xsi:type="frameweb:AuthFailureUrl" client="//@compose.0/Controller%20Package/New%20Front%20Controller" supplier="//@compose.0/View%20Package/login%20page">
       <resultDependencyConstraint result="null"/>
     </packagedElement>
   </compose>
   <compose xsi:type="frameweb:EntityModel" name="Entity Model">
     <packagedElement xsi:type="frameweb:DomainPackage" name="Entity Package">
-      <packagedElement xsi:type="frameweb:AuthUser" name="New Auth User Class">
-        <ownedAttribute xsi:type="frameweb:AuthUserName" name="username" visibility="private"/>
+      <packagedElement xsi:type="frameweb:AuthUser" name="pessoa">
+        <ownedAttribute xsi:type="frameweb:AuthUserName" name="matricula" visibility="private"/>
         <ownedAttribute xsi:type="frameweb:AuthPassword" name="password" visibility="private"/>
+        <ownedAttribute xsi:type="frameweb:IdAttribute" name="id_pessoa"/>
       </packagedElement>
-      <packagedElement xsi:type="frameweb:AuthRole" name="New Class">
+      <packagedElement xsi:type="frameweb:AuthRole" name="role">
         <ownedAttribute xsi:type="frameweb:AuthRoleName" name="roleName" visibility="private"/>
       </packagedElement>
-      <packagedElement xsi:type="frameweb:AuthPermission" name="New Class">
+      <packagedElement xsi:type="frameweb:AuthPermission" name="permission">
         <ownedAttribute xsi:type="frameweb:AuthPermName" name="permissionName" visibility="private"/>
       </packagedElement>
       <packagedElement xsi:type="frameweb:DomainClass" name="New Class"/>
