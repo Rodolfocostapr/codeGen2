@@ -3,12 +3,12 @@ package com.frameweb.java;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name = "")
+@ManagedBean(name = "login_form")
 @SessionScoped
-public class New Front Controller {
+public class LoginController {
 
 
-	public New Front Controller(){
+	public LoginController(){
 		
 	}
 

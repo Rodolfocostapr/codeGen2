@@ -10,11 +10,11 @@
     	<intercept-url pattern="/login_page" access="permitAll" />
         <form-login 
 		   login-page="/login_page"
-		   login-processing-url="/New Front Controller/login"
+		   login-processing-url="/LoginController/login"
 		   username-parameter="j_username"
 		   password-parameter="j_password"
-		   default-target-url="///@compose.0/View%20Package/index"
-       authentication-failure-url="/"/>
+		   default-target-url="/index"
+       authentication-failure-url="/login_page"/>
 		   <logout 
 		   logout-url="/logout" 
 		   logout-success-url="/login_page"/>
@@ -24,11 +24,11 @@
 		<authentication-provider>
     		 <jdbc-user-service 
       			data-source-ref="dataSource"
-      			users-by-username-query="select pessoa.matricula, pessoa.password, 1 from pessoa where pessoa.matricula=?"
-      			authorities-by-username-query="SELECT DISTINCT pessoa.matricula, role_permission.permissions_permissionName
-												FROM pessoa, pessoa_role, role_permission 
-												where pessoa.id_pessoa = pessoa_role.pessoa_id_pessoa and
-												role_permission.role_roleName = pessoa_role.roles_roleName and pessoa.matricula = ?" />
+      			users-by-username-query="select User.username, User.password, 1 from User where User.username=?"
+      			authorities-by-username-query="SELECT DISTINCT User.username, Role_Permission.Permissions_permissionName
+												FROM User, User_Role, Role_Permission 
+												where User.user_id = User_Role.User_user_id and
+												Role_Permission.Role_roleName = User_Role.Roles_roleName and User.username = ?" />
       		<!-- 	
       		<user-service>
 				<user name="123" password="1234" authorities="ROLE_USER" />
